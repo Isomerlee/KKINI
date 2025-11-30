@@ -1,7 +1,141 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team KKINI - 학생식당 소통 보드</title>
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css" />
+    <style>
+        /* 전체 스타일 설정 */
+        body {
+            font-family: "Pretendard Variable", "Pretendard", -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            color: #111;
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* 모바일 화면 중앙 정렬 및 여백 */
+        .container {
+            width: 100%;
+            max-width: 480px; /* 스마트폰 너비에 적당하게 */
+            padding: 30px 24px;
+            box-sizing: border-box;
+        }
+
+        /* 상단 작은 영어 텍스트 */
+        .top-caption {
+            font-size: 14px;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        /* 노란색 형광펜 효과 제목 */
+        h1.title-highlight {
+            display: inline;
+            background-color: #FFEA00; /* 쨍한 노란색 */
+            color: #000;
+            font-size: 28px;
+            font-weight: 800;
+            line-height: 1.4;
+            padding: 4px 0;
+            box-decoration-break: clone;
+            -webkit-box-decoration-break: clone;
+        }
+        
+        /* 제목 아래 여백 */
+        .title-wrapper {
+            margin-bottom: 40px;
+        }
+
+        /* 본문 텍스트 스타일 */
+        p {
+            font-size: 18px;
+            margin-bottom: 24px;
+            word-break: keep-all; /* 단어 단위 줄바꿈 */
+        }
+
+        /* 보라색 강조 텍스트 */
+        .purple-text {
+            color: #6200EA; /* 이미지와 유사한 보라색 */
+            font-weight: 700;
+        }
+
+        /* 팀명 스타일 */
+        .team-name {
+            font-weight: 700;
+            font-size: 20px;
+        }
+
+        /* 영어 섹션 구분 여백 */
+        .english-section {
+            margin-top: 60px;
+            padding-top: 20px;
+        }
+
+        /* 영어 본문 폰트 크기 조정 */
+        .english-section p {
+            font-size: 16px;
+            color: #333;
+        }
+
+        /* 푸터 (로고 영역) */
+        footer {
+            margin-top: 80px;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+
+        .logo-text {
+            font-weight: 900;
+            font-size: 14px;
+            color: #333;
+            letter-spacing: -0.5px;
+            line-height: 1.2;
+        }
+    </style>
+</head>
 <body>
-    <h1>내 첫번째 웹사이트</h1>
-    <p>인터넷으로 접속 성공!</p>
+
+    <div class="container">
+        <div class="title-wrapper">
+            <div class="top-caption">We're testing the student cafeteria communication board! ✅</div>
+            <h1 class="title-highlight">학생식당 소통 보드 테스트 중!</h1>
+        </div>
+
+        <section>
+            <p>안녕하세요!</p>
+            
+            <p>저희는 <span class="purple-text">디자인과 서비스 디자인 기초 수업</span>을 수강하고 있는 <span class="team-name">Team KKINI🍚</span> 입니다 :)</p>
+            
+            <p>이 보드는 학생과 학생식당이 더 잘 소통할 수 있는 방법을 시험해 보는 공간입니다.</p>
+            
+            <p>보드를 살펴보고 자유롭게 의견을 남겨주세요!</p>
+            
+            <p>여러분의 한마디가 더 좋은 학생식당을 만드는 데 큰 도움이 됩니다!</p>
+        </section>
+
+        <section class="english-section">
+            <p>Hello!</p>
+            
+            <p>We are <span class="team-name">Team KKINI🍚</span>, taking the <span class="purple-text">Service Design Fundamentals course</span> :)</p>
+            
+            <p>This panel is a space where we’re exploring ways to improve communication between students and the campus cafeteria.</p>
+            
+            <p>Take a look around and feel free to leave any thoughts or suggestions!</p>
+            
+            <p>Your feedback — even just one sentence — helps us create a better dining experience for everyone on campus!</p>
+        </section>
+
+        <footer>
+            <div class="logo-text">
+                DESIGN<br>DEPARTMENT
+            </div>
+        </footer>
+    </div>
+
 </body>
 </html>
