@@ -2,171 +2,179 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Team KKINI - 학생식당 소통 보드</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Team KKINI - Project Board</title>
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css" />
     <style>
-        /* 전체 스타일 설정 */
+        /* --- 기본 설정 --- */
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         body {
-            font-family: "Pretendard Variable", "Pretendard", -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #ffffff;
-            color: #111;
-            line-height: 1.6;
-            display: flex;
-            justify-content: center;
+            font-family: "Pretendard Variable", "Pretendard", -apple-system, sans-serif;
+            margin: 0; padding: 0;
+            background-color: #fff; color: #111;
+            padding-top: calc(58px + env(safe-area-inset-top));
+            padding-bottom: env(safe-area-inset-bottom);
         }
 
-        /* 모바일 화면 중앙 정렬 및 여백 */
-        .container {
-            width: 100%;
-            max-width: 480px; /* 스마트폰 너비에 적당하게 */
-            padding: 30px 24px;
-            box-sizing: border-box;
+        /* --- 헤더 --- */
+        header {
+            position: fixed; top: 0; left: 0; width: 100%;
+            height: calc(58px + env(safe-area-inset-top));
+            background: rgba(255,255,255,0.95); backdrop-filter: blur(10px);
+            border-bottom: 1px solid #e0e0e0; z-index: 1000;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: env(safe-area-inset-top) 16px 0 16px;
         }
 
-        /* 상단 작은 영어 텍스트 */
-        .top-caption {
-            font-size: 14px;
-            color: #333;
-            margin-bottom: 8px;
+        /* [수정됨] 메뉴 간격 좁힘 (gap: 16px -> 8px) */
+        .nav-tabs { display: flex; gap: 8px; height: 100%; align-items: center; flex: 1; overflow-x: auto; }
+        .nav-tabs::-webkit-scrollbar { display: none; }
+        
+        /* [수정됨] 글자 크기 축소 (font-size: 15px -> 13px) */
+        .tab-link {
+            text-decoration: none; color: #999;
+            font-size: 13px; /* 크기 줄임 */
+            font-weight: 600;
+            display: flex; align-items: center; height: 100%;
+            position: relative; white-space: nowrap; letter-spacing: -0.3px;
+        }
+        .tab-link.active { color: #111; font-weight: 800; }
+        .tab-link.active::after {
+            content: ''; position: absolute; bottom: 0; left: 0; width: 100%;
+            height: 3px; background-color: #111; border-radius: 3px 3px 0 0;
         }
 
-        /* 노란색 형광펜 효과 제목 */
+        .text-en { display: none; }
+
+        /* --- 스위치 --- */
+        .switch-wrapper { margin-left: 10px; flex-shrink: 0; }
+        .switch { position: relative; display: inline-block; width: 52px; height: 28px; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        
+        .slider {
+            position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0;
+            background-color: #f0f0f0; transition: .3s; border-radius: 34px;
+            border: 2px solid #ccc; /* 힌트용 테두리 */
+        }
+        
+        .slider:before {
+            position: absolute; content: "KR";
+            height: 20px; width: 20px;
+            left: 2px; bottom: 2px;
+            background-color: white; transition: .3s; border-radius: 50%;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2); z-index: 2;
+            display: flex; justify-content: center; align-items: center;
+            font-size: 9px; font-weight: 800; color: #333;
+        }
+        
+        input:checked + .slider { background-color: #111; border-color: #111; }
+        input:checked + .slider:before { transform: translateX(24px); content: "EN"; }
+
+        /* --- 본문 --- */
+        .container { max-width: 500px; margin: 0 auto; padding: 30px 24px 80px 24px; }
+        
         h1.title-highlight {
-            display: inline;
-            background-color: #FFEA00; /* 쨍한 노란색 */
-            color: #000;
-            font-size: 28px;
-            font-weight: 800;
-            line-height: 1.4;
-            padding: 4px 0;
-            box-decoration-break: clone;
-            -webkit-box-decoration-break: clone;
+            display: inline-block;
+            background-color: #FFEA00; color: #000;
+            font-size: 28px; font-weight: 900; line-height: 1.2;
+            padding: 2px 4px; margin-bottom: 8px;
         }
         
-        /* 제목 아래 여백 */
-        .title-wrapper {
-            margin-bottom: 40px;
-        }
-
-        /* 본문 텍스트 스타일 */
-        p {
-            font-size: 18px;
-            margin-bottom: 24px;
-            word-break: keep-all; /* 단어 단위 줄바꿈 */
-        }
-
-        /* 보라색 강조 텍스트 */
-        .purple-text {
-            color: #6200EA; /* 이미지와 유사한 보라색 */
-            font-weight: 700;
-        }
-
-        /* 팀명 스타일 */
-        .team-name {
-            font-weight: 700;
-            font-size: 20px;
-        }
-
-        /* 버튼 스타일 (새로 추가됨) */
-        .link-button {
-            display: block;
-            width: 100%;
-            background-color: #f5f5f5; /* 연한 회색 배경 */
-            color: #333;
-            text-align: center;
-            padding: 16px 0;
-            border-radius: 12px;
-            text-decoration: none; /* 밑줄 제거 */
-            font-weight: 700;
-            font-size: 16px;
-            margin-top: 10px;
-            margin-bottom: 40px;
-            transition: background-color 0.2s;
-            border: 1px solid #ddd;
-        }
+        .title-wrapper { margin-bottom: 36px; }
+        p { font-size: 17px; margin-bottom: 24px; line-height: 1.6; word-break: keep-all; color: #222; }
+        .purple-text { color: #6200EA; font-weight: 700; }
+        .team-name { font-weight: 700; font-size: 19px; }
+        .en-content { display: none; }
         
-        .link-button:hover {
-            background-color: #e0e0e0; /* 눌렀을 때 색상 변화 */
-        }
-        
-        .link-button span {
-            color: #0091EA; /* 강조색 파랑 */
-        }
-
-        /* 영어 섹션 구분 여백 */
-        .english-section {
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 1px dashed #ddd; /* 점선으로 구분 */
-        }
-
-        /* 영어 본문 폰트 크기 조정 */
-        .english-section p {
-            font-size: 16px;
-            color: #333;
-        }
-
-        /* 푸터 (로고 영역) */
-        footer {
-            margin-top: 60px;
-            border-top: 1px solid #eee;
-            padding-top: 20px;
-        }
-
-        .logo-text {
-            font-weight: 900;
-            font-size: 14px;
-            color: #333;
-            letter-spacing: -0.5px;
-            line-height: 1.2;
-        }
+        /* --- 푸터 --- */
+        footer { margin-top: 60px; padding-top: 20px; border-top: 1px solid #eee; }
+        footer img.footer-logo { max-width: 150px; height: auto; display: block; }
     </style>
 </head>
 <body>
 
+    <header>
+        <nav class="nav-tabs">
+            <a href="index.html" class="tab-link active">
+                <span class="text-ko">소통 보드 프로젝트</span>
+                <span class="text-en">Project Board</span>
+            </a>
+            <a href="why.html" class="tab-link">
+                <span class="text-ko">이 프로젝트 왜 하나요?</span>
+                <span class="text-en">Why this project?</span>
+            </a>
+            <a href="feedback.html" class="tab-link">
+                <span class="text-ko">좋은 의견 받아요</span>
+                <span class="text-en">Send Feedback</span>
+            </a>
+        </nav>
+        
+        <div class="switch-wrapper">
+            <label class="switch">
+                <input type="checkbox" id="lang-toggle" onchange="toggleLanguage()">
+                <span class="slider"></span>
+            </label>
+        </div>
+    </header>
+
     <div class="container">
-        <div class="title-wrapper">
-            <div class="top-caption">We're testing the student cafeteria communication board! ✅</div>
-            <h1 class="title-highlight">학생식당 소통 보드 테스트 중!</h1>
+        <div id="content-ko">
+            <div class="title-wrapper">
+                <h1 class="title-highlight">학생식당 소통 보드 테스트 중!</h1>
+            </div>
+            <p>안녕하세요!</p>
+            <p>저희는 <span class="purple-text">서비스 디자인 기초 수업</span>을 수강하고 있는 <span class="team-name">Team KKINI🍚</span> 입니다 :)</p>
+            <p>이 보드는 학생과 학생식당이 더 잘 소통할 수 있는 방법을 시험해 보는 공간입니다.</p>
+            <p>보드를 살펴보고 자유롭게 의견을 남겨주세요!</p>
+            <p>여러분의 한마디가 더 좋은 학생식당을 만드는 데 큰 도움이 됩니다!</p>
         </div>
 
-        <section>
-            <p>안녕하세요!</p>
-            
-            <p>저희는 <span class="purple-text">디자인과 서비스 디자인 기초 수업</span>을 수강하고 있는 <span class="team-name">Team KKINI🍚</span> 입니다 :)</p>
-            
-            <p>이 보드는 학생과 학생식당이 더 잘 소통할 수 있는 방법을 시험해 보는 공간입니다.</p>
-            
-            <p>보드를 살펴보고 자유롭게 의견을 남겨주세요!</p>
-            
-            <p>여러분의 한마디가 더 좋은 학생식당을 만드는 데 큰 도움이 됩니다!</p>
-        </section>
-
-        <a href="why.html" class="link-button">
-            👉 <span>피드백이 왜 필요한가요?</span> (자세히 보기)
-        </a>
-
-        <section class="english-section">
+        <div id="content-en" class="en-content">
+            <div class="title-wrapper">
+                <h1 class="title-highlight">Testing the Cafeteria Communication Board!</h1>
+            </div>
             <p>Hello!</p>
-            
-            <p>We are <span class="team-name">Team KKINI🍚</span>, taking the <span class="purple-text">Service Design Fundamentals course</span> :)</p>
-            
-            <p>This panel is a space where we’re exploring ways to improve communication between students and the campus cafeteria.</p>
-            
-            <p>Take a look around and feel free to leave any thoughts or suggestions!</p>
-            
-            <p>Your feedback — even just one sentence — helps us create a better dining experience for everyone on campus!</p>
-        </section>
+            <p>We are <span class="team-name">Team KKINI🍚</span>, currently taking the <span class="purple-text">Service Design Fundamentals course</span> :)</p>
+            <p>This board is a space where we are testing ways for students and the cafeteria to communicate better.</p>
+            <p>Please take a look at the board and feel free to leave your opinions!</p>
+            <p>Your single comment is a huge help in making a better student cafeteria!</p>
+        </div>
 
         <footer>
-            <div class="logo-text">
-                DESIGN<br>DEPARTMENT
-            </div>
+            <img src="logo.png" alt="DESIGN DEPARTMENT Logo" class="footer-logo">
         </footer>
     </div>
 
+    <script>
+        const toggle = document.getElementById('lang-toggle');
+        const ko = document.getElementById('content-ko');
+        const en = document.getElementById('content-en');
+
+        const savedLang = localStorage.getItem('selectedLang');
+        if (savedLang === 'en') { toggle.checked = true; setLang('en'); } 
+        else { toggle.checked = false; setLang('ko'); }
+
+        function toggleLanguage() {
+            if (toggle.checked) { setLang('en'); localStorage.setItem('selectedLang', 'en'); } 
+            else { setLang('ko'); localStorage.setItem('selectedLang', 'ko'); }
+        }
+
+        function setLang(lang) {
+            const textKo = document.querySelectorAll('.text-ko');
+            const textEn = document.querySelectorAll('.text-en');
+
+            if (lang === 'en') {
+                ko.style.display = 'none';
+                en.style.display = 'block';
+                textKo.forEach(el => el.style.display = 'none');
+                textEn.forEach(el => el.style.display = 'inline');
+            } else {
+                ko.style.display = 'block';
+                en.style.display = 'none';
+                textKo.forEach(el => el.style.display = 'inline');
+                textEn.forEach(el => el.style.display = 'none');
+            }
+        }
+    </script>
 </body>
 </html>
