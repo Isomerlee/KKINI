@@ -70,10 +70,37 @@
             font-size: 20px;
         }
 
+        /* 버튼 스타일 (새로 추가됨) */
+        .link-button {
+            display: block;
+            width: 100%;
+            background-color: #f5f5f5; /* 연한 회색 배경 */
+            color: #333;
+            text-align: center;
+            padding: 16px 0;
+            border-radius: 12px;
+            text-decoration: none; /* 밑줄 제거 */
+            font-weight: 700;
+            font-size: 16px;
+            margin-top: 10px;
+            margin-bottom: 40px;
+            transition: background-color 0.2s;
+            border: 1px solid #ddd;
+        }
+        
+        .link-button:hover {
+            background-color: #e0e0e0; /* 눌렀을 때 색상 변화 */
+        }
+        
+        .link-button span {
+            color: #0091EA; /* 강조색 파랑 */
+        }
+
         /* 영어 섹션 구분 여백 */
         .english-section {
-            margin-top: 60px;
+            margin-top: 20px;
             padding-top: 20px;
+            border-top: 1px dashed #ddd; /* 점선으로 구분 */
         }
 
         /* 영어 본문 폰트 크기 조정 */
@@ -84,7 +111,7 @@
 
         /* 푸터 (로고 영역) */
         footer {
-            margin-top: 80px;
+            margin-top: 60px;
             border-top: 1px solid #eee;
             padding-top: 20px;
         }
@@ -117,6 +144,10 @@
             
             <p>여러분의 한마디가 더 좋은 학생식당을 만드는 데 큰 도움이 됩니다!</p>
         </section>
+
+        <a href="why.html" class="link-button">
+            👉 <span>피드백이 왜 필요한가요?</span> (자세히 보기)
+        </a>
 
         <section class="english-section">
             <p>Hello!</p>
