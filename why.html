@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team KKINI - 피드백이 왜 필요한가요?</title>
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css" />
+    <style>
+        body {
+            font-family: "Pretendard Variable", "Pretendard", -apple-system, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            color: #111;
+            line-height: 1.5;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 480px;
+            padding: 30px 24px;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        /* 상단 캡션 */
+        .top-caption {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 4px;
+            font-weight: 500;
+        }
+
+        /* 노란색 메인 타이틀 */
+        .title-yellow {
+            background-color: #FFEA00;
+            font-size: 28px;
+            font-weight: 900;
+            display: inline-block; /* 글자 크기에 딱 맞게 배경색 지정 */
+            padding: 2px 4px;
+            line-height: 1.2;
+            margin-bottom: 8px;
+        }
+
+        /* 파란색 서브 타이틀 영역 */
+        .blue-title-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 40px;
+        }
+
+        .title-blue {
+            background-color: #0091EA; /* 쨍한 파란색 */
+            color: #fff;
+            font-size: 18px;
+            font-weight: 800;
+            padding: 4px 8px;
+            display: inline-block;
+        }
+
+        .blue-caption {
+            font-size: 10px;
+            color: #666;
+            line-height: 1.2;
+            max-width: 120px;
+        }
+
+        /* 본문 리스트 스타일 */
+        .content-item {
+            margin-bottom: 32px;
+            padding-left: 10px; /* 약간 들여쓰기 */
+            border-left: 2px solid #eee; /* 회색 선으로 시각적 연결감 */
+        }
+
+        .item-title {
+            font-size: 17px;
+            font-weight: 700;
+            margin-bottom: 6px;
+            word-break: keep-all;
+        }
+
+        .item-desc {
+            font-size: 13px;
+            color: #777;
+            font-weight: 400;
+            line-height: 1.6;
+            word-break: keep-all;
+        }
+
+        /* 영문 번역 섹션 */
+        .english-section {
+            margin-top: 50px;
+            border-top: 1px dotted #ddd;
+            padding-top: 20px;
+        }
+
+        .english-item {
+            margin-bottom: 16px;
+        }
+
+        .en-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .en-desc {
+            font-size: 11px;
+            color: #888;
+            line-height: 1.4;
+        }
+        
+        /* 우측 상단 숟가락 그림 대체 (텍스트로 표현하기 어려워 아이콘 처리 고려) */
+        /* 이미지가 있다면 img 태그로 넣으면 되지만, 여기선 여백으로 처리 */
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="top-caption">Learning the cafeteria workflow now✨</div>
+        
+        <div class="title-yellow">학식 알고리즘 학습 중</div>
+        
+        <div class="blue-title-wrapper">
+            <div class="title-blue">피드백이 왜 필요할까요?</div>
+            <div class="blue-caption">Why do we need your feedback to level up our service? 💬</div>
+        </div>
+
+        <div class="content-list">
+            <div class="content-item">
+                <div class="item-title">오늘의 피드백이 다음 주 메뉴를 즉시 바꿔요</div>
+                <div class="item-desc">유니스트는 1주 단위로 식단을 계획해요. 따라서 여러분이 오늘 남긴 피드백은 바로 다음 주 메뉴를 개선하는 데 반영될 수 있어요.</div>
+            </div>
+
+            <div class="content-item">
+                <div class="item-title">이 보드가 영양사님과 연결된 '유일한 직접적 통로'예요</div>
+                <div class="item-desc">영양사님은 언제든 의견을 반영할 준비가 되어 있지만, 여러분이 이 유일한 창구를 지나쳐버리면 개선을 위한 데이터를 수집할 다른 방법이 없어요.</div>
+            </div>
+
+            <div class="content-item">
+                <div class="item-title">칭찬이 없으면 '인기 메뉴'도 사라질 수 있어요</div>
+                <div class="item-desc">불만은 '개선'을 위해, 칭찬은 '유지'를 위해 반드시 필요해요.</div>
+            </div>
+        </div>
+
+        <div class="english-section">
+            <div class="english-item">
+                <span class="en-title">Your feedback actually changes next week's menu!</span>
+                <span class="en-desc">Since UNIST plans meals on a weekly basis, what you tell us today goes straight into making next week's food better</span>
+            </div>
+
+            <div class="english-item">
+                <span class="en-title">This board is your ‘only & direct’ channel to the nutritionist</span>
+                <span class="en-desc">Our nutritionist is ready to listen, but if you walk past this board, we have no other way to capture the data</span>
+            </div>
+
+            <div class="english-item">
+                <span class="en-title">Even popular items can disappear without your love!</span>
+                <span class="en-desc">Complaints help us improve, but your thumbs-up keeps your favorites around</span>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
