@@ -6,32 +6,94 @@
     <title>Team KKINI - Prototype</title>
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css" />
     <style>
-        /* --- 공통 설정 생략 (위와 동일) --- */
+        /* --- 공통 설정 --- */
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-        body { font-family: "Pretendard Variable", "Pretendard", -apple-system, sans-serif; margin: 0; padding: 0; background-color: #fff; color: #111; padding-top: calc(58px + env(safe-area-inset-top)); padding-bottom: env(safe-area-inset-bottom); }
-        header { position: fixed; top: 0; left: 0; width: 100%; height: calc(58px + env(safe-area-inset-top)); background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); border-bottom: 1px solid #e0e0e0; z-index: 1000; display: flex; align-items: center; justify-content: space-between; padding: env(safe-area-inset-top) 16px 0 16px; }
+        body {
+            font-family: "Pretendard Variable", "Pretendard", -apple-system, sans-serif;
+            margin: 0; padding: 0; background-color: #fff; color: #111;
+            padding-top: calc(58px + env(safe-area-inset-top));
+            padding-bottom: env(safe-area-inset-bottom);
+        }
+
+        /* --- 헤더 --- */
+        header {
+            position: fixed; top: 0; left: 0; width: 100%;
+            height: calc(58px + env(safe-area-inset-top));
+            background: rgba(255,255,255,0.95); backdrop-filter: blur(10px);
+            border-bottom: 1px solid #e0e0e0; z-index: 1000;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: env(safe-area-inset-top) 16px 0 16px;
+        }
+
         .nav-tabs { display: flex; gap: 14px; height: 100%; align-items: center; flex: 1; overflow-x: auto; }
         .nav-tabs::-webkit-scrollbar { display: none; }
-        .tab-link { text-decoration: none; color: #999; font-size: 13px; font-weight: 600; display: flex; align-items: center; height: 100%; position: relative; white-space: nowrap; letter-spacing: -0.3px; }
+        .tab-link {
+            text-decoration: none; color: #999;
+            font-size: 13px; font-weight: 600;
+            display: flex; align-items: center; height: 100%;
+            position: relative; white-space: nowrap; letter-spacing: -0.3px;
+        }
         .tab-link.active { color: #111; font-weight: 800; }
-        .tab-link.active::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 3px; background-color: #111; border-radius: 3px 3px 0 0; }
+        .tab-link.active::after {
+            content: ''; position: absolute; bottom: 0; left: 0; width: 100%;
+            height: 3px; background-color: #111; border-radius: 3px 3px 0 0;
+        }
         .text-en { display: none; }
+
+        /* --- 스위치 --- */
         .switch-wrapper { margin-left: 10px; flex-shrink: 0; }
         .switch { position: relative; display: inline-block; width: 52px; height: 28px; }
         .switch input { opacity: 0; width: 0; height: 0; }
-        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #f0f0f0; transition: .3s; border-radius: 34px; border: 2px solid #ccc; }
-        .slider:before { position: absolute; content: "KR"; height: 20px; width: 20px; left: 2px; bottom: 2px; background-color: white; transition: .3s; border-radius: 50%; box-shadow: 0 1px 3px rgba(0,0,0,0.2); z-index: 2; display: flex; justify-content: center; align-items: center; font-size: 9px; font-weight: 800; color: #333; }
+        .slider {
+            position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0;
+            background-color: #f0f0f0; transition: .3s; border-radius: 34px;
+            border: 2px solid #ccc;
+        }
+        .slider:before {
+            position: absolute; content: "KR";
+            height: 20px; width: 20px; left: 2px; bottom: 2px;
+            background-color: white; transition: .3s; border-radius: 50%;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2); z-index: 2;
+            display: flex; justify-content: center; align-items: center;
+            font-size: 9px; font-weight: 800; color: #333;
+        }
         input:checked + .slider { background-color: #111; border-color: #111; }
         input:checked + .slider:before { transform: translateX(24px); content: "EN"; }
 
-        .container { max-width: 100%; margin: 0 auto; padding: 20px 0 60px 0; display: flex; flex-direction: column; align-items: center; }
+        /* --- Prototype 페이지 스타일 --- */
+        .container { 
+            max-width: 500px; /* 버튼만 있을 땐 중앙 정렬이 예뻐서 500px로 잡음 */
+            margin: 0 auto; 
+            padding: 30px 24px 80px 24px; 
+        }
         .en-content { display: none; }
-        .title-area { width: 100%; max-width: 600px; padding: 10px 24px 20px 24px; }
-        .title-yellow { background-color: #FFEA00; font-size: 28px; font-weight: 900; display: inline-block; padding: 2px 4px; line-height: 1.2; margin-bottom: 8px; }
-        p { font-size: 16px; color: #555; margin: 0; line-height: 1.5; }
-        .figma-container { width: 100%; height: 80vh; background-color: #f5f5f5; border-top: 1px solid #ddd; border-bottom: 1px solid #ddd; }
-        .figma-container iframe { width: 100%; height: 100%; border: none; }
-        footer { margin-top: 40px; padding: 20px 24px; }
+
+        .title-wrapper { margin-bottom: 30px; }
+        .title-yellow {
+            background-color: #FFEA00; font-size: 28px; font-weight: 900;
+            display: inline-block; padding: 2px 4px; line-height: 1.2; margin-bottom: 8px;
+        }
+        p { font-size: 17px; margin-bottom: 24px; line-height: 1.6; word-break: keep-all; color: #222; }
+
+        /* 피그마 버튼 스타일 (검정색) */
+        .figma-btn {
+            display: flex; justify-content: center; align-items: center;
+            width: 100%;
+            background-color: #111; /* 시크한 블랙 */
+            color: #fff;
+            padding: 18px 0;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 17px;
+            margin-top: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.1s ease;
+        }
+        .figma-btn:active { transform: scale(0.98); opacity: 0.9; }
+        .figma-btn span { margin-left: 8px; }
+
+        footer { margin-top: 60px; padding-top: 20px; border-top: 1px solid #eee; }
         footer img.footer-logo { max-width: 150px; height: auto; display: block; margin: 0 auto; }
     </style>
 </head>
@@ -70,19 +132,27 @@
     </header>
 
     <div class="container">
-        <div class="title-area">
-            <div id="content-ko">
+        
+        <div id="content-ko">
+            <div class="title-wrapper">
                 <div class="title-yellow">프로토타입 체험</div>
-                <p>기획한 서비스가 실제로 어떻게 작동하는지<br>직접 눌러보며 체험해보세요!</p>
             </div>
-            <div id="content-en" class="en-content">
-                <div class="title-yellow">Try the Prototype</div>
-                <p>Experience how our service actually works<br>by interacting with the prototype below!</p>
-            </div>
+            <p>기획한 서비스가 실제로 어떻게 작동하는지<br>아래 버튼을 눌러 직접 체험해보세요!</p>
+            
+            <a href="https://www.figma.com/proto/qQ8cfZqHTckNrVZyZ3KDI0/SDF?page-id=1255%3A73&node-id=1552-1927&p=f&viewport=-8839%2C-2007%2C0.19&t=wMSHlaZdn4rPa5HZ-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=1533%3A572" target="_blank" class="figma-btn">
+                ▶ <span>프로토타입 실행하기</span>
+            </a>
         </div>
 
-        <div class="figma-container">
-            <iframe style="border: none;" width="100%" height="100%" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FYOUR_FILE_LINK" allowfullscreen></iframe>
+        <div id="content-en" class="en-content">
+            <div class="title-wrapper">
+                <div class="title-yellow">Try the Prototype</div>
+            </div>
+            <p>Experience how our service actually works<br>by clicking the button below!</p>
+
+            <a href="https://www.figma.com/proto/qQ8cfZqHTckNrVZyZ3KDI0/SDF?page-id=1255%3A73&node-id=1552-1927&p=f&viewport=-8839%2C-2007%2C0.19&t=wMSHlaZdn4rPa5HZ-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=1533%3A572" target="_blank" class="figma-btn">
+                ▶ <span>Launch Prototype</span>
+            </a>
         </div>
 
         <footer>
