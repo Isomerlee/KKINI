@@ -6,106 +6,34 @@
     <title>Team KKINI - Feedback</title>
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css" />
     <style>
-        /* --- 공통 설정 --- */
+        /* CSS 생략 (동일) */
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-        body {
-            font-family: "Pretendard Variable", "Pretendard", -apple-system, sans-serif;
-            margin: 0; padding: 0; background-color: #fff; color: #111;
-            padding-top: calc(58px + env(safe-area-inset-top));
-            padding-bottom: env(safe-area-inset-bottom);
-        }
-
-        /* --- 헤더 --- */
-        header {
-            position: fixed; top: 0; left: 0; width: 100%;
-            height: calc(58px + env(safe-area-inset-top));
-            background: rgba(255,255,255,0.95); backdrop-filter: blur(10px);
-            border-bottom: 1px solid #e0e0e0; z-index: 1000;
-            display: flex; align-items: center; justify-content: space-between;
-            padding: env(safe-area-inset-top) 16px 0 16px;
-        }
-
-        /* 메뉴 설정 */
+        body { font-family: "Pretendard Variable", "Pretendard", -apple-system, sans-serif; margin: 0; padding: 0; background-color: #fff; color: #111; padding-top: calc(58px + env(safe-area-inset-top)); padding-bottom: env(safe-area-inset-bottom); }
+        header { position: fixed; top: 0; left: 0; width: 100%; height: calc(58px + env(safe-area-inset-top)); background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); border-bottom: 1px solid #e0e0e0; z-index: 1000; display: flex; align-items: center; justify-content: space-between; padding: env(safe-area-inset-top) 16px 0 16px; }
         .nav-tabs { display: flex; gap: 14px; height: 100%; align-items: center; flex: 1; overflow-x: auto; }
         .nav-tabs::-webkit-scrollbar { display: none; }
-        .tab-link {
-            text-decoration: none; color: #999;
-            font-size: 13px;
-            font-weight: 600;
-            display: flex; align-items: center; height: 100%;
-            position: relative; white-space: nowrap; letter-spacing: -0.3px;
-        }
+        .tab-link { text-decoration: none; color: #999; font-size: 13px; font-weight: 600; display: flex; align-items: center; height: 100%; position: relative; white-space: nowrap; letter-spacing: -0.3px; }
         .tab-link.active { color: #111; font-weight: 800; }
-        .tab-link.active::after {
-            content: ''; position: absolute; bottom: 0; left: 0; width: 100%;
-            height: 3px; background-color: #111; border-radius: 3px 3px 0 0;
-        }
-
+        .tab-link.active::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 3px; background-color: #111; border-radius: 3px 3px 0 0; }
         .text-en { display: none; }
-
-        /* --- 스위치 --- */
         .switch-wrapper { margin-left: 10px; flex-shrink: 0; }
         .switch { position: relative; display: inline-block; width: 52px; height: 28px; }
         .switch input { opacity: 0; width: 0; height: 0; }
-        .slider {
-            position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0;
-            background-color: #f0f0f0; transition: .3s; border-radius: 34px;
-            border: 2px solid #ccc;
-        }
-        .slider:before {
-            position: absolute; content: "KR";
-            height: 20px; width: 20px; left: 2px; bottom: 2px;
-            background-color: white; transition: .3s; border-radius: 50%;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.2); z-index: 2;
-            display: flex; justify-content: center; align-items: center;
-            font-size: 9px; font-weight: 800; color: #333;
-        }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #f0f0f0; transition: .3s; border-radius: 34px; border: 2px solid #ccc; }
+        .slider:before { position: absolute; content: "KR"; height: 20px; width: 20px; left: 2px; bottom: 2px; background-color: white; transition: .3s; border-radius: 50%; box-shadow: 0 1px 3px rgba(0,0,0,0.2); z-index: 2; display: flex; justify-content: center; align-items: center; font-size: 9px; font-weight: 800; color: #333; }
         input:checked + .slider { background-color: #111; border-color: #111; }
         input:checked + .slider:before { transform: translateX(24px); content: "EN"; }
 
-        /* --- Feedback 페이지 스타일 --- */
         .container { max-width: 500px; margin: 0 auto; padding: 30px 24px 80px 24px; }
-        .en-content { display: none; }
-
-        .title-yellow {
-            background-color: #FFEA00; font-size: 28px; font-weight: 900;
-            display: inline-block; padding: 2px 4px; line-height: 1.2; margin-bottom: 24px;
-        }
-        
+        .title-yellow { background-color: #FFEA00; font-size: 28px; font-weight: 900; display: inline-block; padding: 2px 4px; line-height: 1.2; margin-bottom: 24px; }
         p { font-size: 17px; margin-bottom: 24px; line-height: 1.6; word-break: keep-all; color: #222; }
-
-        /* 카카오톡 버튼 */
-        .kakao-btn {
-            display: flex; justify-content: center; align-items: center;
-            width: 100%;
-            background-color: #FEE500;
-            color: #191919;
-            padding: 18px 0;
-            border-radius: 12px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 17px;
-            margin-top: 20px;
-            margin-bottom: 12px;
-            box-shadow: 0 4px 10px rgba(254, 229, 0, 0.3);
-            transition: transform 0.1s ease;
-        }
+        .kakao-btn { display: flex; justify-content: center; align-items: center; width: 100%; background-color: #FEE500; color: #191919; padding: 18px 0; border-radius: 12px; text-decoration: none; font-weight: 700; font-size: 17px; margin-top: 20px; margin-bottom: 12px; box-shadow: 0 4px 10px rgba(254, 229, 0, 0.3); transition: transform 0.1s ease; }
         .kakao-btn:active { transform: scale(0.98); }
         .kakao-btn span { margin-left: 8px; }
-
-        /* 작성자 정보 */
-        .author-info {
-            text-align: center; font-size: 14px; color: #555; margin-bottom: 30px; font-weight: 500;
-        }
-
-        /* 구분선 */
+        .author-info { text-align: center; font-size: 14px; color: #555; margin-bottom: 30px; font-weight: 500; }
         hr.divider { border: none; border-top: 1px solid #e0e0e0; margin: 30px 0; }
-
-        /* 팀원 정보 */
         .team-info { font-size: 14px; color: #666; line-height: 1.6; text-align: left; }
         .team-label { color: #111; font-weight: 800; font-size: 15px; display: block; margin-bottom: 4px; }
-
-        /* 푸터 */
         footer { margin-top: 50px; padding-top: 20px; }
         footer img.footer-logo { max-width: 150px; height: auto; display: block; }
     </style>
@@ -114,6 +42,14 @@
 
     <header>
         <nav class="nav-tabs">
+            <a href="presentation.html" class="tab-link">
+                <span class="text-ko">발표 자료</span>
+                <span class="text-en">Final Presentation</span>
+            </a>
+            <a href="prototype.html" class="tab-link">
+                <span class="text-ko">프로토타입</span>
+                <span class="text-en">Prototype</span>
+            </a>
             <a href="index.html" class="tab-link">
                 <span class="text-ko">소통 보드 프로젝트</span>
                 <span class="text-en">Project Board</span>
@@ -125,10 +61,6 @@
             <a href="feedback.html" class="tab-link active">
                 <span class="text-ko">좋은 의견 받아요</span>
                 <span class="text-en">Send Feedback</span>
-            </a>
-            <a href="presentation.html" class="tab-link">
-                <span class="text-ko">발표 자료</span>
-                <span class="text-en">Final Presentation</span>
             </a>
         </nav>
         
@@ -145,11 +77,9 @@
             <div class="title-yellow">좋은 의견 받아요</div>
             <p>소통 보드를 사용하면서 느낀 점이나 더 좋은 아이디어가 있다면 자유롭게 말씀해 주세요!</p>
             <p>아래 버튼을 누르면 오픈채팅방으로 연결됩니다.</p>
-            
             <a href="https://open.kakao.com/o/sFeTtD4h" target="_blank" class="kakao-btn">
                 💬 <span>오픈채팅 참여하기</span>
             </a>
-            
             <div class="author-info">유니스트 디자인학과 이경석</div>
         </div>
 
@@ -157,11 +87,9 @@
             <div class="title-yellow">We welcome your feedback</div>
             <p>If you have any thoughts or better ideas while using this board, please feel free to share them!</p>
             <p>Click the button below to join our Open Chat.</p>
-
             <a href="https://open.kakao.com/o/sFeTtD4h" target="_blank" class="kakao-btn">
                 💬 <span>Join Open Chat</span>
             </a>
-
             <div class="author-info">UNIST Design Department Kyeongseok Lee</div>
         </div>
 
@@ -173,7 +101,7 @@
         </div>
 
         <footer>
-            <img src="logo.png" alt="DESIGN DEPARTMENT Logo" class="footer-logo">
+            <img src="DD-Full%20version.png" alt="DESIGN DEPARTMENT Logo" class="footer-logo">
         </footer>
     </div>
 
@@ -181,7 +109,6 @@
         const toggle = document.getElementById('lang-toggle');
         const ko = document.getElementById('content-ko');
         const en = document.getElementById('content-en');
-
         const savedLang = localStorage.getItem('selectedLang');
         if (savedLang === 'en') { toggle.checked = true; setLang('en'); } 
         else { toggle.checked = false; setLang('ko'); }
@@ -190,19 +117,15 @@
             if (toggle.checked) { setLang('en'); localStorage.setItem('selectedLang', 'en'); } 
             else { setLang('ko'); localStorage.setItem('selectedLang', 'ko'); }
         }
-
         function setLang(lang) {
             const textKo = document.querySelectorAll('.text-ko');
             const textEn = document.querySelectorAll('.text-en');
-
             if (lang === 'en') {
-                ko.style.display = 'none';
-                en.style.display = 'block';
+                ko.style.display = 'none'; en.style.display = 'block';
                 textKo.forEach(el => el.style.display = 'none');
                 textEn.forEach(el => el.style.display = 'inline');
             } else {
-                ko.style.display = 'block';
-                en.style.display = 'none';
+                ko.style.display = 'block'; en.style.display = 'none';
                 textKo.forEach(el => el.style.display = 'inline');
                 textEn.forEach(el => el.style.display = 'none');
             }
